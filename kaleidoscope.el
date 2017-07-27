@@ -38,7 +38,7 @@
   "Send a command with (optional) arguments to the device. The
 command must be a keyword, and the arguments a pre-formatted
 string."
-  (process-send-command "*kaleidoscope*"
+  (process-send-command "kaleidoscope"
    (s-join " "
            (list (s-chop-prefix ":" (s-replace "/" "." (symbol-name command)))
                  args))))
@@ -59,7 +59,7 @@ string suitable for Kaleidoscope's LED commands."
 
   (make-serial-process :port kaleidoscope-device-port
                        :speed 9600
-                       :name "*kaleidoscope*"
+                       :name "kaleidoscope"
                        :buffer "*kaleidoscope*"))
 
 ;;;###autoload
@@ -67,6 +67,6 @@ string suitable for Kaleidoscope's LED commands."
   "Disconnect from the device."
   (interactive)
 
-  (quit-process "*kaleidoscope*"))
+  (delete-process "kaleidoscope"))
 
 ;;; kaleidoscope.el ends here
