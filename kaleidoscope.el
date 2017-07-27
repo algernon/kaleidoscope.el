@@ -67,6 +67,7 @@ string suitable for Kaleidoscope's LED commands."
   "Disconnect from the device."
   (interactive)
 
-  (delete-process "kaleidoscope"))
+  (delete-process "kaleidoscope")
+  (kill-buffer "*kaleidoscope*"))
 
 ;;; kaleidoscope.el ends here
