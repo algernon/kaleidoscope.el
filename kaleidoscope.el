@@ -4,7 +4,7 @@
 ;;
 ;; Author: Gergely Nagy
 ;; URL: https://github.com/algernon/kaleidoscope.el
-;; Package-Requires: ((evil "1.2.12"))
+;; Package-Requires: ((evil "1.2.12") (s "1.11.0"))
 ;;
 ;; This file is NOT part of GNU Emacs.
 ;;
@@ -54,35 +54,57 @@
 
 ;;;; Helpers
 
-(defun kaleidoscope/command (command)
-  (process-send-string "*kaleidoscope*" (format "%s\n" command)))
+(defun kaleidoscope/send-command (command args)
+  (process-send-command "*kaleidoscope*"
+   (s-join " "
+           (list (s-chop-prefix ":" (s-replace "/" "." (symbol-name command)))
+                  args))))
+
 
 (defun kaleidoscope/color-to-rgb (color)
   (mapconcat (lambda (c) (format "%d" (round (* 255 c))))
              (color-name-to-rgb color)
              " "))
 
-(defun kaleidoscope/leds-off ()
-  (kaleidoscope/command "led.setAll 0 0 0"))
-
-(defun kaleidoscope/flash ()
+(defun kaleidoscope/flash-evil-state ()
   (let ((color (eval (intern (concat "kaleidoscope/" (symbol-name evil-next-state) "-state-color")))))
-    (kaleidoscope/command (format "led.setAll %s" (kaleidoscope/color-to-rgb color)))
+    (kaleidoscope/send-command :led/setAll (kaleidoscope/color-to-rgb color))
     (run-at-time kaleidoscope/flash-duration nil
-                 #'kaleidoscope/leds-off)))
+                 (kaleidoscope/send-command :led/setAll "0 0 0"))))
 
 ;;;; Main entry point
 
-(make-serial-process :port kaleidoscope/keyboard-port
-                     :speed 9600
-                     :name "*kaleidoscope*"
-                     :buffer "*kaleidoscope*")
+(defun kaleidoscope-start ()
+  (interactive)
 
-(mapc (lambda (state)
-        (add-hook state #'kaleidoscope/flash))
-      '(evil-insert-state-entry-hook
-        evil-visual-state-entry-hook
-        evil-replace-state-entry-hook
-        evil-normal-state-entry-hook))
+  (make-serial-process :port kaleidoscope/keyboard-port
+                       :speed 9600
+                       :name "*kaleidoscope*"
+                       :buffer "*kaleidoscope*"))
+
+(defun kaleidoscope-quit ()
+  (interactive)
+
+  (quit-process "*kaleidoscope*"))
+
+(defun kaleidoscope/evil-state-flash-setup ()
+  (interactive)
+
+  (mapc (lambda (state)
+          (add-hook state #'kaleidoscope/flash-evil-state))
+        '(evil-insert-state-entry-hook
+          evil-visual-state-entry-hook
+          evil-replace-state-entry-hook
+          evil-normal-state-entry-hook)))
+
+(defun kaleidoscope/evil-state-flash-teardown ()
+  (interactive)
+
+  (mapc (lambda (state)
+          (remove-hook state #'kaleidoscope/flash-evil-state))
+        '(evil-insert-state-entry-hook
+          evil-visual-state-entry-hook
+          evil-replace-state-entry-hook
+          evil-normal-state-entry-hook)))
 
 (provide 'kaleidoscope)
