@@ -54,7 +54,7 @@
 
 (defun kaleidoscope-evil-state-flash ()
   "Flash the keyboard with colors depending on 'evil-next-state'."
-  (let ((color (eval (intern (concat "kaleidoscope-evil-state-flash"
+  (let ((color (eval (intern (concat "kaleidoscope-evil-state-flash-"
                                      (symbol-name evil-next-state)
                                      "-state-color")))))
     (kaleidoscope-send-command :led/setAll (kaleidoscope-color-to-rgb color))
