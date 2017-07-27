@@ -4,7 +4,7 @@
 ;;
 ;; Author: Gergely Nagy
 ;; URL: https://github.com/algernon/kaleidoscope.el
-;; Package-Requires: ((evil "1.2.12") (s "1.11.0"))
+;; Package-Requires: ((s "1.11.0"))
 ;;
 ;; This file is NOT part of GNU Emacs.
 ;;
