@@ -1,4 +1,4 @@
-;;; Kaleidoscope -- Kaleidoscope-powered device control from Emacs
+;;; kaleidoscope-evil-state-flash.el -- Flash keyboard LEDs when changing Evil state
 ;;
 ;; Copyright (c) 2017 Gergely Nagy
 ;;
