@@ -9,7 +9,7 @@
 ;;
 ;;; Commentary:
 ;;
-;; TODO
+;; Flash the keyboard LEDs when changing Evil states.
 ;;
 ;;; License: GPLv3+
 
@@ -20,7 +20,7 @@
 ;;;; Settings
 
 (defgroup kaleidoscope/evil-state-flash nil
-  "Customization group for 'Kaleidoscope'."
+  "Customization group for 'kaleidoscope/evil-state-flash'."
   :group 'kaleidoscope)
 
 (defcustom kaleidoscope/evil-state-flash/insert-state-color "#66CE00"
@@ -51,6 +51,7 @@
 ;;;; Helpers
 
 (defun kaleidoscope/evil-state-flash ()
+  "Flash the keyboard with colors depending on 'evil-next-state'."
   (let ((color (eval (intern (concat "kaleidoscope/evil-state-flash"
                                      (symbol-name evil-next-state)
                                      "-state-color")))))
@@ -62,6 +63,7 @@
 
 ;;;###autoload
 (defun kaleidoscope/evil-state-flash-setup ()
+  "Set up hooks to flash the keyboard when changing Evil states."
   (interactive)
 
   (mapc (lambda (state)
@@ -73,6 +75,7 @@
 
 ;;;###autoload
 (defun kaleidoscope/evil-state-flash-teardown ()
+  "Remove the hooks set up by 'kaleidoscope/evil-state-flash-setup'."
   (interactive)
 
   (mapc (lambda (state)
