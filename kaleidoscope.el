@@ -41,7 +41,7 @@ string."
   (process-send-string "kaleidoscope"
                        (s-join " "
                                (list (s-chop-prefix ":" (s-replace "/" "." (symbol-name command)))
-                                     args "\n"))))
+                                     (format "%s" args) "\n"))))
 
 (defun kaleidoscope-color-to-rgb (color)
   "Convert a color name or hexadecimal RGB representation to a
