@@ -59,7 +59,7 @@
                                              "-state-color")))))
     (kaleidoscope-send-command :led/setAll (kaleidoscope-color-to-rgb color))
     (run-at-time kaleidoscope-evil-state-flash-duration nil
-                 (kaleidoscope-send-command :led/setAll "0 0 0"))))
+                 (lambda () (kaleidoscope-send-command :led/setAll "0 0 0")))))
 
 ;;;; Main entry point
 
