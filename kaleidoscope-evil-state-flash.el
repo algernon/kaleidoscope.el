@@ -60,8 +60,9 @@
                                               (symbol-name evil-next-state)
                                               "-state-color")))))
      (kaleidoscope-send-command :led/setAll (kaleidoscope-color-to-rgb color))
-     (run-at-time kaleidoscope-evil-state-flash-duration nil
-                  (lambda () (kaleidoscope-send-command :led/setAll "0 0 0"))))))
+     (unless (s-blank? kaleidoscope-evil-state-flash-duration)
+       (run-at-time kaleidoscope-evil-state-flash-duration nil
+                   (lambda () (kaleidoscope-send-command :led/setAll "0 0 0")))))))
 
 ;;;; Main entry point
 
