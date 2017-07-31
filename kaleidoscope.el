@@ -35,8 +35,8 @@
 ;;;; Helpers
 
 (defun kaleidoscope-send-command (command &optional args)
-  "Send a command with (optional) arguments to the device. The
-command must be a keyword, and the arguments a pre-formatted
+  "Send a COMMAND with (optional) arguments ARGS to the device.
+The command must be a keyword, and the arguments a pre-formatted
 string."
   (process-send-string "kaleidoscope"
                        (s-join " "
@@ -44,8 +44,7 @@ string."
                                      (format "%s" args) "\n"))))
 
 (defun kaleidoscope-color-to-rgb (color)
-  "Convert a color name or hexadecimal RGB representation to a
-string suitable for Kaleidoscope's LED commands."
+  "Convert a COLOR name or hexadecimal RGB representation to a string."
   (mapconcat (lambda (c) (format "%d" (round (* 255 c))))
              (color-name-to-rgb color)
              " "))
