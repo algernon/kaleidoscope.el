@@ -19,8 +19,6 @@
 
 ;;; Code:
 
-(provide 'kaleidoscope)
-
 ;;;; Settings
 
 (defgroup kaleidoscope nil
@@ -68,5 +66,7 @@ string."
 
   (delete-process "kaleidoscope")
   (kill-buffer "*kaleidoscope*"))
+
+(provide 'kaleidoscope)
 
 ;;; kaleidoscope.el ends here
