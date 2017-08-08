@@ -1,6 +1,9 @@
 kaleidoscope.el
 ===============
 
+[![MELPA: kaleidoscope](https://melpa.org/packages/kaleidoscope-badge.svg)](https://melpa.org/#/kaleidoscope)
+[![MELPA: kaleidoscope-evil-state-flash](https://melpa.org/packages/kaleidoscope-evil-state-flash-badge.svg)](https://melpa.org/#/kaleidoscope-evil-state-flash)
+
 An Emacs interface to [Kaleidoscope][kaleidoscope] powered devices, such as
 the [Keyboard.io Model01][kbdio:model01]. It requires appropriate hardware, and
 a customised firmware that allows bi-directional communication
