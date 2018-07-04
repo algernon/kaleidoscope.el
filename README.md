@@ -58,7 +58,7 @@ Demo
 A short, terrible quality video of the package (showing
 `kaleidoscope-evil-state-flash` in action) can be [found here][demo].
 
- [demo]: https://trunk.mad-scientist.club/system/media_attachments/files/000/196/368/original/4b8868ca21dec73f.webm
+ [demo]: https://asylum.madhouse-project.org/assets/asylum/images/posts/keyboard-firmware-work/2017-08-01/kaleidoscope.el-demo.webm
 
 Copyright & License
 -------------------
