@@ -52,13 +52,20 @@ mode that allows this (such as `LEDOff`).
 To enable or disable this flashing, call `kaleidoscope-evil-state-flash-setup`
 or `kaleidoscope-evil-state-flash-teardown` respectively.
 
+Note that for the LED Control to work, your Kaleidoscope firmware must have the
+`FOCUS_HOOK_LEDCONTROL` enabled on top of enabling the [Focus plugin][kaleidoscope:focus].
+
+```cpp
+Focus.addHook(FOCUS_HOOK_LEDCONTROL);
+```
+
 Demo
 ----
 
-A short, terrible quality video of the package (showing
-`kaleidoscope-evil-state-flash` in action) can be [found here][demo].
+A short, video of the package (showing `kaleidoscope-evil-state-flash` in
+action) can be [found here][demo].
 
- [demo]: https://asylum.madhouse-project.org/assets/asylum/images/posts/keyboard-firmware-work/2017-08-01/kaleidoscope.el-demo.webm
+[demo]: https://www.youtube.com/watch?v=XrrqZXmg6k4
 
 Copyright & License
 -------------------
