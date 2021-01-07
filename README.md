@@ -7,11 +7,11 @@ kaleidoscope.el
 An Emacs interface to [Kaleidoscope][kaleidoscope] powered devices, such as
 the [Keyboard.io Model01][kbdio:model01]. It requires appropriate hardware, and
 a customised firmware that allows bi-directional communication
-(the [Kaleidoscope-Focus][kaleidoscope:focus] plugin does just this).
+(the [FocusSerial][focus:serial] plugin does just this).
 
  [kaleidoscope]: https://github.com/keyboardio/Kaleidoscope
  [kbdio:model01]: https://shop.keyboard.io/
- [kaleidoscope:focus]: https://github.com/keyboardio/Kaleidoscope-Focus
+ [focus:serial]: https://kaleidoscope.readthedocs.io/en/latest/plugins/Kaleidoscope-FocusSerial.html
 
 Usage
 -----
